@@ -8,5 +8,8 @@ namespace BusProject
 {
     class BookingSeats
     {
+        public void checkSeats(){
+
+        }
     }
 }
