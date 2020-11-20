@@ -8,5 +8,6 @@ namespace BusProject
 {
     class Route
     {
+        public string[] line1 = { "Helwan", "Helwan University", "Maadi", "Al-Sadat", "Demerdash", "Ain Shams", "Elmarg" };
     }
 }
