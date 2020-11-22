@@ -10,44 +10,76 @@ namespace BusProject
     {
         static public int userID = 0;
         public double userCredit { set; get; }
-        enum userType { 0:elders,1:youth,2:kids under 5}
-
+        enum userType { elders, youth, kids_under5 }
+        int type;
 
         public string userName { set; get; }
         int userAge { set; get; }
-        string usreContact { set; get; }
+        string userContact { set; get; }
 
 
         public User(string name, int age, string contact)
         {
+            generate_id();
 
-            if (age < 5)
-                userType = 2;
-            else if (age > 60)
-                userType = 0;
-            else userType = 1;
+            /*   if (age < 5)
+               {
+                   type = (int)userType.kids_under5;
+               }
+
+               else if (age > 60)
+                   type = (int)userType.elders;
+               else type = (int)userType.youth ; */
             this.userName = name;
-            this.usreContact = contact;
+            this.userContact = contact;
+        }
+        public int getType()
+        {
+            //  generate_id();
+            if (this.userAge < 5)
+                type = (int)userType.kids_under5;
+            else if (this.userAge > 60)
+                type = (int)userType.elders;
+            else type = (int)userType.youth;
+
+            return type;
         }
         public User()
         {
-            if (this.userAge < 5)
-                userType = 2;
-            else if (this.userAge > 60)
-                userType = 0;
-            else userType = 1;
+            User.userID = generate_id();
+
         }
-        public static User register(string name, int age, string contact)
+
+        public void register(string name, int age, string contact)
         {
-            User c;
-            c.userAge = age;
 
-            c.userName = name;
-            c.usreContact = contact;
+            this.userAge = age;
 
-            return c;
+            this.userName = name;
+            this.userContact = contact;
+
+
+        }
+        public int generate_id()
+        {
+            userID++;
+            return userID;
+        }
+        public double recharge_credit(double b)
+        {
+            this.userCredit += b;
+            return this.userCredit;
         }
 
+        public void display()
+        {
+            Console.WriteLine("User Nsme is: {0}", this.userName);
+            Console.WriteLine("User Credit :{0}", this.userCredit);
+            Console.WriteLine("User ID is :{0}", User.userID);
+            Console.WriteLine("age is:{0}", this.userAge);
+            Console.WriteLine("User contact is {0}", this.userContact);
+            //Console.WriteLine(this.getType());
+        }
 
     }
 }
